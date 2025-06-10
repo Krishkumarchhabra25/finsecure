@@ -1,0 +1,168 @@
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { helveticaNeue, playfairDisplay } from "./fonts/fonts";
+import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const StepCard = ({ imageSrc, title, description, highlight }) => {
+  return (
+    <div className="w-[33%] max-md:w-full group">
+      <div className="grow tracking-tight text-center text-stone-300 max-md:mt-10">
+        <div
+          className={`flex flex-col justify-center p-[2px] rounded-[12px] transition-all duration-300 ease-in-out group-hover:shadow-[0_0_12px_2px_rgba(255,255,255,0.15)] ${
+            highlight
+              ? "bg-[linear-gradient(198.25deg,_#121317_13.96%,_#0B0C0E_100%)]"
+              : "bg-[rgba(12,12,12,0.3)]"
+          }`}
+          style={{ width: 390, height: 644 }}
+        >
+          <div className="flex flex-col justify-center h-full w-full bg-[#0c0c0c] rounded-[12px] px-6 py-14 max-md:px-5 transition-all duration-300">
+            <img
+              src={imageSrc}
+              alt={title}
+              className="object-contain mx-auto w-[305px] h-full aspect-[0.69] transform transition-transform duration-300 group-hover:-translate-y-2"
+            />
+            <div>
+              <h3 className="text-3xl font-semibold leading-none text-white">
+                {title}
+              </h3>
+              <p className="mt-4 text-lg leading-6 text-stone-300">
+                {description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const GettingStartedHeader = () => {
+  return (
+    <header className="flex flex-col items-center">
+      <h1
+        className={`${playfairDisplay.className} text-[65px] font-medium tracking-tight leading-none text-center text-white max-md:max-w-full max-md:text-4xl`}
+      >
+        Getting Started with our App
+      </h1>
+      <p
+        className={`${helveticaNeue.variable} font-helvetica mt-10 text-[27px] font-light tracking-tight leading-none text-center text-stone-300 max-md:mt-10 max-md:max-w-full`}
+      >
+        Simple steps to begin your journey towards a faster, smarter way to pay
+        and earn.
+      </p>
+    </header>
+  );
+};
+
+const StepsGrid = () => {
+  const steps = [
+    {
+      imageSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/46dc11209a18e77f398b82e0f1da1625aa679fcb?placeholderIfAbsent=true",
+      title: "Download the App",
+      description:
+        "Find FinSecure on the App Store. It's free and lightweight — install in seconds.",
+    },
+    {
+      imageSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/cba7b1e45e531273f83ff0b03ca3eb6270bdbe58?placeholderIfAbsent=true",
+      title: "Create Your Account",
+      description:
+        "Sign up with your phone number and verify your identity securely. No paperwork needed.",
+    },
+    {
+      imageSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/a32b6bd5d1ff5a642bb3ef565faca2a7dcaaec66?placeholderIfAbsent=true",
+      title: "Explore Your Dashboard",
+      description:
+        "Access recharges, bill payments, cashback offers, QR payments, and more — all in one clean interface.",
+      highlight: true,
+    },
+  ];
+
+  return (
+    <div className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full">
+      <div className="flex gap-5 max-md:flex-col">
+        {steps.map((step, index) => (
+          <StepCard
+            key={index}
+            imageSrc={step.imageSrc}
+            title={step.title}
+            description={step.description}
+            highlight={step.highlight}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const GettingStartedSection = () => {
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    if (statsRef.current) {
+      gsap.fromTo(
+        statsRef.current,
+        { opacity: 0, y: 80, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, []);
+
+  return (
+    <>
+      <section className="flex overflow-hidden flex-col justify-center items-center px-20 py-26 bg-black max-md:px-5 max-md:py-24">
+        <div className="flex flex-col items-center ml-3.5 w-full max-w-[1487px] max-md:max-w-full">
+          <GettingStartedHeader />
+          <StepsGrid />
+        </div>
+      </section>
+
+      {/* Full-Width Stats Section */}
+      <div
+        ref={statsRef}
+        className="relative z-10 text-white flex flex-col items-center justify-center p-2 "
+        style={{
+          backgroundImage: `
+            linear-gradient(190deg, #000000 0%, #8B4513 50%, #D2B48C 100%),
+            url('/GRADIANTGRAINS.png')
+          `,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h2
+          className={`${playfairDisplay.className} text-[44px] md:text-[54px] font-semibold tracking-tight text-center leading-tight`}
+        >
+          Onboard in less than 10 minutes today
+        </h2>
+        <p className="mt-6 text-lg md:text-xl text-white/80 text-center">
+          Join over 1,000+ Users already using FinSecure.
+        </p>
+        <button className="mt-8 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-8 py-4 rounded-full text-sm font-medium hover:opacity-90 transition duration-300">
+          Download Now
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default GettingStartedSection;

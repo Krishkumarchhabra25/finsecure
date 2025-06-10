@@ -1,0 +1,31 @@
+
+@import "tailwindcss";
+
+body {
+  background: #000000; /* Solid black */
+  color: #ffffff;       /* White text */
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradientMove {
+  background: linear-gradient(
+      97.3deg,
+      rgba(78, 81, 97, 0.5) 7.39%,
+      rgba(78, 81, 97, 0) 40.62%
+    ),
+    linear-gradient(
+      274.19deg,
+      rgba(78, 81, 97, 0.5) 0%,
+      rgba(78, 81, 97, 0) 38.76%
+    );
+  background-size: 200% 200%;
+  animation: gradientMove 3s linear infinite;
+}
