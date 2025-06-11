@@ -2,13 +2,19 @@
 
 import React, { useEffect, useRef } from "react";
 import { helveticaNeue, playfairDisplay } from "./fonts/fonts";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+type StepCardProps = {
+  imageSrc: string;
+  title: string;
+  description: string;
+  highlight?: boolean; // optional if not always provided
+};
+
 gsap.registerPlugin(ScrollTrigger);
 
-const StepCard = ({ imageSrc, title, description, highlight }) => {
+const StepCard = ({ imageSrc, title, description, highlight = false }: StepCardProps) => {
   return (
     <div className="w-[33%] max-md:w-full group">
       <div className="grow tracking-tight text-center text-stone-300 max-md:mt-10">
@@ -60,6 +66,8 @@ const GettingStartedHeader = () => {
 };
 
 const StepsGrid = () => {
+  const stepsRef = useRef<HTMLDivElement | null>(null);
+
   const steps = [
     {
       imageSrc:
@@ -85,8 +93,32 @@ const StepsGrid = () => {
     },
   ];
 
+  useEffect(() => {
+    if (stepsRef.current) {
+      gsap.fromTo(
+        stepsRef.current,
+        { opacity: 0, y: 80, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: stepsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, []);
+
   return (
-    <div className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full">
+    <div
+      ref={stepsRef}
+      className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full"
+    >
       <div className="flex gap-5 max-md:flex-col">
         {steps.map((step, index) => (
           <StepCard
@@ -103,7 +135,7 @@ const StepsGrid = () => {
 };
 
 const GettingStartedSection = () => {
-  const statsRef = useRef(null);
+  const statsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (statsRef.current) {
@@ -136,31 +168,31 @@ const GettingStartedSection = () => {
       </section>
 
       {/* Full-Width Stats Section */}
-      <div
-        ref={statsRef}
-        className="relative z-10 text-white flex flex-col items-center justify-center p-2 "
-        style={{
-          backgroundImage: `
-            linear-gradient(190deg, #000000 0%, #8B4513 50%, #D2B48C 100%),
-            url('/GRADIANTGRAINS.png')
-          `,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <h2
-          className={`${playfairDisplay.className} text-[44px] md:text-[54px] font-semibold tracking-tight text-center leading-tight`}
-        >
-          Onboard in less than 10 minutes today
-        </h2>
-        <p className="mt-6 text-lg md:text-xl text-white/80 text-center">
-          Join over 1,000+ Users already using FinSecure.
-        </p>
-        <button className="mt-8 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-8 py-4 rounded-full text-sm font-medium hover:opacity-90 transition duration-300">
-          Download Now
-        </button>
-      </div>
+<div ref={statsRef} className="relative z-10 text-white flex flex-col items-center justify-center p-8">
+
+  {/* Background Image */}
+  <div className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+       style={{ backgroundImage: "url('/white.png')" }}>
+  </div>
+
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80"></div>
+
+  {/* Content */}
+  <div className="relative z-10 flex flex-col items-center text-center">
+    <h2 className={`${playfairDisplay.className} text-[44px] md:text-[54px] font-semibold tracking-tight leading-tight`}>
+      Onboard in less than 10 minutes today
+    </h2>
+    <p className="mt-6 text-lg md:text-xl text-white/80">
+      Join over 1,000+ Users already using FinSecure.
+    </p>
+    <button className="mt-8 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-8 py-4 rounded-full text-sm font-medium hover:opacity-90 transition duration-300">
+      Download Now
+    </button>
+  </div>
+</div>
+
+
     </>
   );
 };

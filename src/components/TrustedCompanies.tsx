@@ -1,4 +1,11 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const companiesRow1 = [
   { name: "NEA", logo: "/NEA.png" },
@@ -14,8 +21,35 @@ const companiesRow2 = [
 ];
 
 export default function TrustedCompanies() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const element = sectionRef.current;
+    if (element) {
+      gsap.fromTo(
+        element.querySelectorAll(".logo-item"),
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, []);
+
   return (
-    <section className="bg-black py-12 mt-10 flex flex-col items-center w-full">
+    <section
+      ref={sectionRef}
+      className="bg-black py-12 mt-10 flex flex-col items-center w-full"
+    >
       <h3 className="text-white text-[20px] mb-8 text-center">
         Trusted by top investors and financial partners worldwide
       </h3>
@@ -23,7 +57,7 @@ export default function TrustedCompanies() {
       {/* First Row: 4 logos */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center mb-8">
         {companiesRow1.map((company) => (
-          <div key={company.name} className="flex justify-center items-center">
+          <div key={company.name} className="logo-item flex justify-center items-center">
             <Image
               src={company.logo}
               alt={company.name}
@@ -38,7 +72,7 @@ export default function TrustedCompanies() {
       {/* Second Row: 3 logos */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 items-center">
         {companiesRow2.map((company) => (
-          <div key={company.key} className="flex justify-center items-center">
+          <div key={company.key} className="logo-item flex justify-center items-center">
             <Image
               src={company.logo}
               alt={company.name}

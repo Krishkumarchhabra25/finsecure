@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { playfairDisplay } from "./fonts/fonts";
 import { FaCreditCard, FaUsers } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const iconBackgroundStyle = {
   background: `
@@ -19,10 +24,33 @@ const cardVariants = {
   initial: { scale: 1, x: 0, y: 0, opacity: 0 },
   hover: { scale: 1.05, x: 10, y: 10, opacity: 1 },
 };
-
 export default function FeaturesSection() {
+const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+   cardRefs.current.forEach((card) => {
+    if (card) {
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  });
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-black px-4 py-10 text-white overflow-hidden">
+   <section className="relative min-h-screen flex flex-col items-center justify-center bg-black px-4 py-10 text-white overflow-hidden">
       <h1 className={`${playfairDisplay.className} text-[40px] md:text-[56px] font-semibold text-center leading-tight`}>
         Save More. Earn More.
       </h1>
@@ -31,12 +59,13 @@ export default function FeaturesSection() {
         With FinSecure, get 2% cashback on recharges, 1% on credit card payments, and earn from referral — it’s your money, made smarter.
       </p>
 
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
         
         {/* --------- Card 1 --------- */}
         <motion.div
           whileHover="hover"
           initial="initial"
+ref={(el) => { cardRefs.current[0] = el; }}
           className="relative group rounded-2xl p-8 flex flex-col items-start shadow-md border w-full h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
@@ -45,14 +74,9 @@ export default function FeaturesSection() {
             className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-[0_0_20px_#fff] z-0"
             style={cardBackgroundStyle}
           />
-          <motion.div
-            variants={{ hover: { x: -10 }, initial: { x: 0 } }}
-            className="relative z-10 flex flex-col items-start"
-          >
+          <motion.div className="relative z-10 flex flex-col items-start">
             <div className="w-[146px] h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
-              <motion.div variants={{ hover: { x: -10 }, initial: { x: 0 } }}>
-                <FaCreditCard className="text-white text-4xl" />
-              </motion.div>
+              <FaCreditCard className="text-white text-4xl" />
             </div>
             <h2 className="text-[38px] font-semibold mb-2 text-left">Bill Payment Bonus</h2>
             <p className="text-[21px] text-white/70 text-left w-full">
@@ -65,6 +89,7 @@ export default function FeaturesSection() {
         <motion.div
           whileHover="hover"
           initial="initial"
+ref={(el) => { cardRefs.current[0] = el; }}
           className="relative group rounded-2xl p-8 flex flex-col items-start shadow-md border w-full h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
@@ -75,9 +100,7 @@ export default function FeaturesSection() {
           />
           <motion.div className="relative z-10 flex flex-col items-start">
             <div className="w-[146px] h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
-              <motion.div variants={{ hover: { y: -10 }, initial: { y: 0 } }}>
-                <MdPhoneIphone className="text-white text-3xl" />
-              </motion.div>
+              <MdPhoneIphone className="text-white text-3xl" />
             </div>
             <h2 className="text-[38px] font-semibold mb-2 text-left">Recharge Rewards</h2>
             <p className="text-[21px] text-white/70 text-left w-full">
@@ -90,6 +113,7 @@ export default function FeaturesSection() {
         <motion.div
           whileHover="hover"
           initial="initial"
+ref={(el) => { cardRefs.current[0] = el; }}
           className="relative group rounded-2xl p-8 flex flex-col items-start shadow-md border w-full h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
@@ -100,9 +124,7 @@ export default function FeaturesSection() {
           />
           <motion.div className="relative z-10 flex flex-col items-start">
             <div className="w-[146px] h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
-              <motion.div variants={{ hover: { rotate: 360 }, initial: { rotate: 0 } }}>
-                <FaUsers className="text-white text-3xl" />
-              </motion.div>
+              <FaUsers className="text-white text-3xl" />
             </div>
             <h2 className="text-[38px] font-semibold mb-2 text-left">Referral Earnings</h2>
             <p className="text-[21px] text-white/70 text-left w-full">
@@ -115,6 +137,8 @@ export default function FeaturesSection() {
         <motion.div
           whileHover="hover"
           initial="initial"
+          ref={(el) => { cardRefs.current[0] = el; }}
+
           className="relative group rounded-2xl p-8 flex flex-col items-start shadow-md border w-full h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
@@ -123,10 +147,7 @@ export default function FeaturesSection() {
             className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-[0_0_20px_#fff] z-0"
             style={cardBackgroundStyle}
           />
-          <motion.div
-            variants={{ hover: { scale: 1.1 }, initial: { scale: 1 } }}
-            className="relative z-10 flex flex-col items-start"
-          >
+          <motion.div className="relative z-10 flex flex-col items-start">
             <div className="w-[146px] h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
               <MdPhoneIphone className="text-white text-3xl" />
             </div>

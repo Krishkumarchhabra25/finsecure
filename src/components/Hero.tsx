@@ -61,12 +61,13 @@ export default function Hero() {
     fadeout: { y: 0, opacity: 0, transition: { duration: 2, ease: "easeInOut" } },
   };
 
-  const getCircleAnimation = (direction) => {
-    if (circlePhase === "animate") return direction === "up" ? "animateUp" : "animateDown";
-    if (circlePhase === "pause") return "pause";
-    if (circlePhase === "fadeout") return "fadeout";
-    return "idle";
-  };
+const getCircleAnimation = (direction: "up" | "down"): keyof typeof circleVariants => {
+  if (circlePhase === "animate") return direction === "up" ? "animateUp" : "animateDown";
+  if (circlePhase === "pause") return "pause";
+  if (circlePhase === "fadeout") return "fadeout";
+  return "idle";
+};
+
 
   return (
     <section className="relative flex flex-col items-center justify-center text-center min-h-screen mb-10 px-4 overflow-hidden bg-gradient-to-b from-black via-black to-[#1a150f]">
