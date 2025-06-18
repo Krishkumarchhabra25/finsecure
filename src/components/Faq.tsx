@@ -22,37 +22,37 @@ export default function Faq() {
   };
 
   return (
-    <section className="bg-black text-white py-20 px-8 flex justify-center w-full">
-      <div className="max-w-7xl w-full flex flex-col md:flex-row gap-16">
-        {/* Left side title */}
-        <div className="md:w-1/2 flex flex-col justify-center">
-          <h2 className={`text-[58px] ${playfairDisplay.className} mx-auto font-playfair mb-4 leading-tight`}>
-            Frequently<br />asked questions
-          </h2>
-          <p className="text-gray-400 mx-24 mb-auto text-[16px] mt-2">
-            Don’t see the answer you’re looking for? <br />
-            Get in touch.
-          </p>
-        </div>
+<section className="bg-black text-white py-20 px-8 flex justify-center w-full">
+  <div className="max-w-7xl w-full flex flex-col md:flex-row gap-16">
+    {/* Left Side: Title */}
+    <div className="md:w-1/2 flex flex-col justify-center text-center md:text-left">
+      <h2 className={`text-4xl md:text-[58px] ${playfairDisplay.className} font-playfair mb-4 leading-tight`}>
+        Frequently<br />asked questions
+      </h2>
+      <p className="text-gray-400 text-[16px] mt-2 mx-auto md:mx-0 max-w-sm">
+        Don’t see the answer you’re looking for? <br /> Get in touch.
+      </p>
+    </div>
 
-        {/* Right side FAQ Accordion */}
-        <div className="w-[640px] space-y-6">
-          {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-gray-700 pb-4">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center text-left text-lg"
-              >
-                <span>{faq.question}</span>
-                <span>{openIndex === index ? "▲" : "▼"}</span>
-              </button>
-              {openIndex === index && (
-                <p className="mt-2 text-gray-400 text-sm">{faq.answer}</p>
-              )}
-            </div>
-          ))}
+    {/* Right Side: FAQs */}
+    <div className="w-full md:w-[640px] space-y-6 mt-8 md:mt-0">
+      {faqs.map((faq, index) => (
+        <div key={index} className="border-b border-gray-700 pb-4">
+          <button
+            onClick={() => toggleFAQ(index)}
+            className="w-full flex justify-between items-center text-left text-lg"
+          >
+            <span>{faq.question}</span>
+            <span>{openIndex === index ? "▲" : "▼"}</span>
+          </button>
+          {openIndex === index && (
+            <p className="mt-2 text-gray-400 text-sm">{faq.answer}</p>
+          )}
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
+
   );
 }

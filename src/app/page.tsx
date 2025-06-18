@@ -10,15 +10,17 @@ import TrustedCompanies from "@/components/TrustedCompanies";
 
 export default function Home() {
   return (
- <main>
+ <main className="w-full max-w-[100vw] overflow-x-hidden">
+  
       <Announcement />
       <Header />
   
       <Hero />
     
       <FeaturesSection />
-      <DataSecurity />
       <TrustedCompanies />
+      <DataSecurity />
+      
       <GettingStartedSection />
       <Faq />
       <Footer />

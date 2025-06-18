@@ -48,38 +48,38 @@ export default function TrustedCompanies() {
   return (
     <section
       ref={sectionRef}
-      className="bg-black py-12 mt-10 flex flex-col items-center w-full"
+      className="bg-black  mt-10 md:py-12 md:mt-10 flex flex-col items-center w-full"
     >
-      <h3 className="text-white text-[20px] mb-8 text-center">
+      <h3 className="text-white p-4 text-[16px] md:text-[20px] md:mb-8 text-center">
         Trusted by top investors and financial partners worldwide
       </h3>
 
       {/* First Row: 4 logos */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center mb-8">
+      <div className="grid md:grid-cols-2 grid-cols-4  md:gap-8 items-center md:mb-8 p-4">
         {companiesRow1.map((company) => (
           <div key={company.name} className="logo-item flex justify-center items-center">
-            <Image
-              src={company.logo}
-              alt={company.name}
-              width={100}
-              height={50}
-              className="object-contain grayscale hover:grayscale-0 transition duration-300"
-            />
+           <Image
+  src={company.logo}
+  alt={company.name}
+  width={100}
+  height={50}
+  className="object-contain grayscale hover:grayscale-0 transition duration-300 max-w-[80px] md:max-w-[120px]"
+/>
           </div>
         ))}
       </div>
 
       {/* Second Row: 3 logos */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 items-center">
+      <div className="grid md:grid-cols-2 grid-cols-3 md:gap-8 items-center p-4">
         {companiesRow2.map((company) => (
           <div key={company.key} className="logo-item flex justify-center items-center">
-            <Image
-              src={company.logo}
-              alt={company.name}
-              width={100}
-              height={50}
-              className="object-contain grayscale hover:grayscale-0 transition duration-300"
-            />
+           <Image
+  src={company.logo}
+  alt={company.name}
+  width={100}
+  height={50}
+  className="object-contain grayscale hover:grayscale-0 transition duration-300 max-w-[100px] max-h-[50px]"
+/>
           </div>
         ))}
       </div>
