@@ -50,7 +50,7 @@ export default function TrustedCompanies() {
       ref={sectionRef}
       className="bg-black  mt-10 md:py-12 md:mt-10 flex flex-col items-center w-full"
     >
-      <h3 className="text-white p-4 text-[16px] md:text-[20px] md:mb-8 text-center">
+      <h3 className="text-gray-400 p-6 text-[14px] md:text-[20px] md:mb-8 text-center">
         Trusted by top investors and financial partners worldwide
       </h3>
 

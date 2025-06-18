@@ -25,17 +25,17 @@ const StepCard = ({ imageSrc, title, description, highlight = false }: StepCardP
               : "bg-[rgba(12,12,12,0.3)]"
           }`}
         >
-          <div className="flex flex-col justify-center h-full w-full bg-[#0c0c0c] rounded-[12px] px-6 py-14 max-md:px-5 transition-all duration-300">
+          <div className="flex flex-col justify-center h-full w-full bg-[#0c0c0c] rounded-[12px] px-6 py-10 max-md:px-2 transition-all duration-300">
             <img
               src={imageSrc}
               alt={title}
-              className="object-contain mx-auto w-full max-w-[305px] aspect-[0.69] transform transition-transform duration-300 group-hover:-translate-y-2"
+              className="object-contain mx-auto w-full md:w-[60%] aspect-[0.70] transform transition-transform duration-300 group-hover:-translate-y-2"
             />
             <div>
-              <h3 className="md:text-3xl font-semibold leading-none text-white">
+              <h3 className=" text-[29px] md:text-3xl font-semibold leading-none text-white">
                 {title}
               </h3>
-              <p className="mt-4 text-lg leading-6 text-stone-300">
+              <p className="mt-4 text-[17px] md:text-lg leading-6 text-stone-300">
                 {description}
               </p>
             </div>
@@ -49,7 +49,7 @@ const StepCard = ({ imageSrc, title, description, highlight = false }: StepCardP
 
 const GettingStartedHeader = () => {
   return (
-    <header className="flex flex-col items-center">
+    <header className="flex flex-col items-center ">
       <h1
         className={`${playfairDisplay.className}  text-[24px] md:text-[65px] md:font-medium tracking-tight leading-none text-center text-white max-md:max-w-full `}
       >
@@ -117,7 +117,7 @@ const StepsGrid = () => {
   return (
     <div
       ref={stepsRef}
-      className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full"
+      className="self-stretch md:mt-16  max-md:max-w-full"
     >
       <div className="flex gap-5 max-md:flex-col max-md:items-center">
         {steps.map((step, index) => (
@@ -160,7 +160,7 @@ const GettingStartedSection = () => {
 
   return (
     <>
-      <section className="flex overflow-hidden flex-col justify-center items-center px-20 py-26 bg-black max-md:px-5 max-md:py-24">
+      <section className="flex overflow-hidden flex-col justify-center items-center px-20 mt-20 md:py-26 bg-black max-md:px-5 max-md:py-24">
         <div className="flex flex-col items-center ml-3.5 w-full max-w-[1487px] max-md:max-w-full">
           <GettingStartedHeader />
           <StepsGrid />
@@ -180,10 +180,10 @@ const GettingStartedSection = () => {
 
   {/* Content */}
   <div className="relative z-10 flex flex-col items-center text-center">
-    <h2 className={`${playfairDisplay.className} text-[20px] md:text-[44px] font-semibold tracking-tight leading-tight`}>
+    <h2 className={`${playfairDisplay.className} text-[16px] md:text-[44px] md:font-semibold tracking-tight leading-tight`}>
       Onboard in less than 10 minutes today
     </h2>
-    <p className="md:mt-6 text-lg md:text-xl text-white/80">
+    <p className="md:mt-6 text-[16px] md:text-xl text-white/80 mt-4">
       Join over 1,000+ Users already using FinSecure.
     </p>
     <button className="mt-8 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-8 py-4 rounded-full text-sm font-medium hover:opacity-90 transition duration-300">

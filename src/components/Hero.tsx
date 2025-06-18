@@ -70,7 +70,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-[#d1b05c33] to-transparent opacity-60 pointer-events-none z-0" />
 
       {/* Floating Circles */}
-      <div className="absolute z-0 top-1/2 left-1/2 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute z-0 top-1/2 left-1/2 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[300px] sm:h-[400px]  lg:h-[600px] -translate-x-1/2 -translate-y-1/2">
         <motion.div
           className="absolute w-[100px] sm:w-[140px] md:w-[180px] h-[100px] sm:h-[140px] md:h-[180px] bg-white rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] opacity-40"
           style={{ left: "0px" }}
@@ -93,7 +93,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8, ease: "easeOut" }}
         whileHover={{ scale: 1.03 }}
-        className="relative z-10 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] mx-auto"
+        className="relative z-10 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px]  mx-auto"
       >
         <Image src="/iphone.png" alt="iPhone UI" width={500} height={500} priority className="w-full h-auto object-contain" />
       </motion.div>
@@ -103,7 +103,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-        className={`${playfairDisplay.className} text-white text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[66px] font-semibold leading-tight tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)] z-10`}
+        className={`${playfairDisplay.className} md:-mt-3 text-white text-[24px] sm:text-[32px] md:text-[30px] lg:text-[56px] xl:text-[66px] font-semibold leading-tight tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)] z-10`}
       >
         The era of one-size-fits-all <br /> banking is over
       </motion.h1>
@@ -113,7 +113,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.9, duration: 0.8, ease: "easeOut" }}
-        className="mt-6 flex flex-row md:flex-row gap-4 z-10 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg justify-center items-center"
+        className=" mt-4 md:mt-2 flex flex-row md:flex-row gap-4 z-10 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg justify-center items-center"
       >
         <button className="w-full md:w-auto px-6 py-3 rounded-full bg-[#e3e4ea] text-black text-sm font-semibold border border-[#5d5f6e] shadow-[inset_0_2px_4px_rgba(255,255,255,0.4)] hover:brightness-110 transition">
           Contact Us

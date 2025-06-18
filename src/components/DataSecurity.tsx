@@ -35,7 +35,7 @@ export default function DataSecurity() {
   return (
     <section
       ref={sectionRef}
-      className="bg-black md:py-16 px-4 mt-10 md:mt-28 flex flex-col items-center text-center w-full"
+      className="bg-black mt-24  px-4  md:mt-28 flex flex-col items-center text-center w-full"
     >
       {/* Security Icon */}
       <div className="mb-6">
