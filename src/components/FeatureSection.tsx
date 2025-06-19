@@ -24,33 +24,52 @@ const cardVariants = {
   initial: { scale: 1, x: 0, y: 0, opacity: 0 },
   hover: { scale: 1.05, x: 10, y: 10, opacity: 1 },
 };
+
 export default function FeaturesSection() {
-const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-   cardRefs.current.forEach((card) => {
-    if (card) {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+    const isMobile = window.innerWidth < 768; // Tailwind md breakpoint
+
+    cardRefs.current.forEach((card) => {
+      if (card) {
+        if (isMobile) {
+          // Mobile: simple fade-in on load
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              delay: 0.2,
+            }
+          );
+        } else {
+          // Desktop: ScrollTrigger animation
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
         }
-      );
-    }
-  });
+      }
+    });
   }, []);
 
   return (
-   <section className="relative min-h-screen flex flex-col items-center justify-center bg-black px-4 py-10 text-white overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-black px-4 py-10 text-white overflow-hidden">
       <h1 className={`${playfairDisplay.className} text-[24px] md:text-[56px] font-semibold text-center leading-tight`}>
         Save More. Earn More.
       </h1>
@@ -60,13 +79,13 @@ const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
       </p>
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
-        
+
         {/* --------- Card 1 --------- */}
         <motion.div
           whileHover="hover"
           initial="initial"
-ref={(el) => { cardRefs.current[0] = el; }}
-          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5009px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
+          ref={(el) => { cardRefs.current[0] = el; }}
+          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
           <motion.div
@@ -75,11 +94,11 @@ ref={(el) => { cardRefs.current[0] = el; }}
             style={cardBackgroundStyle}
           />
           <motion.div className="relative z-10 flex flex-col items-start left-4 top-4">
-            <div className=" w-[100.1715px] h-[100.1715px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
+            <div className="w-[100px] h-[100px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
               <FaCreditCard className="text-white text-2xl md:text-4xl" />
             </div>
-            <h2 className="md:text-[38px] text-[26.415px] font-semibold mb-2 text-left">Bill Payment Bonus</h2>
-            <p className="md:text-[21px]  text-[14.7513] md:text-white/70 text-left w-full">
+            <h2 className="md:text-[38px] text-[26px] font-semibold mb-2 text-left">Bill Payment Bonus</h2>
+            <p className="md:text-[21px] text-[15px] md:text-white/70 text-left w-full">
               1% Cashback on credit card bill payments. Earn while staying on top of your bills, instantly.
             </p>
           </motion.div>
@@ -89,8 +108,8 @@ ref={(el) => { cardRefs.current[0] = el; }}
         <motion.div
           whileHover="hover"
           initial="initial"
-ref={(el) => { cardRefs.current[0] = el; }}
-          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5009px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
+          ref={(el) => { cardRefs.current[1] = el; }}
+          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
           <motion.div
@@ -98,12 +117,12 @@ ref={(el) => { cardRefs.current[0] = el; }}
             className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-[0_0_20px_#fff] z-0"
             style={cardBackgroundStyle}
           />
-          <motion.div className="relative z-10 flex flex-col items-start left-4 top-4">
-            <div className=" w-[100.1715px] h-[100.1715px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
+          <motion.div className="relative z-10 flex flex-col items-start left-2 top-4">
+            <div className="w-[100px] h-[100px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
               <MdPhoneIphone className="text-white text-3xl" />
             </div>
-            <h2 className="md:text-[38px] text-[26.415px] font-semibold mb-2 text-left">Recharge Rewards</h2>
-            <p className="md:text-[21px]  text-[14.7513] md:text-white/70 text-left w-full">
+            <h2 className="md:text-[38px] text-[26px] font-semibold mb-2 text-left">Recharge Rewards</h2>
+            <p className="md:text-[21px] text-[15px] md:text-white/70 text-left w-full">
               2% Cashback on all mobile and DTH recharges. Save every time you top up — no limits, no hassle.
             </p>
           </motion.div>
@@ -113,8 +132,8 @@ ref={(el) => { cardRefs.current[0] = el; }}
         <motion.div
           whileHover="hover"
           initial="initial"
-ref={(el) => { cardRefs.current[0] = el; }}
-          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5009px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
+          ref={(el) => { cardRefs.current[2] = el; }}
+          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
           <motion.div
@@ -123,11 +142,11 @@ ref={(el) => { cardRefs.current[0] = el; }}
             style={cardBackgroundStyle}
           />
           <motion.div className="relative z-10 flex flex-col items-start left-4 top-4">
-            <div className=" w-[100.1715px] h-[100.1715px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
+            <div className="w-[100px] h-[100px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
               <FaUsers className="text-white text-3xl" />
             </div>
-            <h2 className="md:text-[38px] text-[26.415px] font-semibold mb-2 text-left">Referral Earnings</h2>
-            <p className="md:text-[21px]  text-[14.7513] md:text-white/70 text-left w-full">
+            <h2 className="md:text-[38px] text-[26px] font-semibold mb-2 text-left">Referral Earnings</h2>
+            <p className="md:text-[21px] text-[15px] md:text-white/70 text-left w-full">
               Refer friends and earn commission on every transaction they make.
             </p>
           </motion.div>
@@ -137,9 +156,8 @@ ref={(el) => { cardRefs.current[0] = el; }}
         <motion.div
           whileHover="hover"
           initial="initial"
-          ref={(el) => { cardRefs.current[0] = el; }}
-
-          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5009px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
+          ref={(el) => { cardRefs.current[3] = el; }}
+          className="relative group rounded-2xl md:p-8 flex flex-col items-start shadow-md border w-full h-[276.5px] md:h-[390px] border-gray-700/50 backdrop-blur-md cursor-pointer overflow-hidden"
           style={cardBackgroundStyle}
         >
           <motion.div
@@ -147,12 +165,12 @@ ref={(el) => { cardRefs.current[0] = el; }}
             className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-[0_0_20px_#fff] z-0"
             style={cardBackgroundStyle}
           />
-         <motion.div className="relative z-10 flex flex-col items-start left-4 top-4">
-            <div className=" w-[100.1715px] h-[100.1715px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
+          <motion.div className="relative z-10 flex flex-col items-start left-4 top-4">
+            <div className="w-[100px] h-[100px] md:w-[146px] md:h-[146px] rounded-full flex items-center justify-center mb-4" style={iconBackgroundStyle}>
               <MdPhoneIphone className="text-white text-3xl" />
             </div>
-            <h2 className="md:text-[38px] text-[26.415px] font-semibold mb-2 text-left">Coming Soon</h2>
-            <p className="md:text-[21px]  text-[14.7513] md:text-white/70 text-left w-full">
+            <h2 className="md:text-[38px] text-[26px] font-semibold mb-2 text-left">Coming Soon</h2>
+            <p className="md:text-[21px] text-[15px] md:text-white/70 text-left w-full">
               Stay tuned for exciting features launching soon on FinSecure.
             </p>
           </motion.div>

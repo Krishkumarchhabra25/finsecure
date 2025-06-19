@@ -32,7 +32,7 @@ const StepCard = ({ imageSrc, title, description, highlight = false }: StepCardP
               className="object-contain mx-auto w-full md:w-[60%] aspect-[0.70] transform transition-transform duration-300 group-hover:-translate-y-2"
             />
             <div>
-              <h3 className=" text-[29px] md:text-3xl font-semibold leading-none text-white">
+              <h3 className=" text-[26px] md:text-3xl font-semibold leading-none text-white">
                 {title}
               </h3>
               <p className="mt-4 text-[17px] md:text-lg leading-6 text-stone-300">
@@ -161,7 +161,7 @@ const GettingStartedSection = () => {
   return (
     <>
       <section className="flex overflow-hidden flex-col justify-center items-center px-20 mt-20 md:py-26 bg-black max-md:px-5 max-md:py-24">
-        <div className="flex flex-col items-center ml-3.5 w-full max-w-[1487px] max-md:max-w-full">
+        <div className="flex flex-col items-center md:ml-3.5 w-full max-w-[1487px] max-md:max-w-full">
           <GettingStartedHeader />
           <StepsGrid />
         </div>

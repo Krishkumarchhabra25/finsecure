@@ -55,7 +55,7 @@ export default function TrustedCompanies() {
       </h3>
 
       {/* First Row: 4 logos */}
-      <div className="grid md:grid-cols-2 grid-cols-4  md:gap-8 items-center md:mb-8 p-4">
+      <div className="grid md:grid-cols-4 grid-cols-4  md:gap-8 items-center md:mb-1 p-4">
         {companiesRow1.map((company) => (
           <div key={company.name} className="logo-item flex justify-center items-center">
            <Image
@@ -70,7 +70,7 @@ export default function TrustedCompanies() {
       </div>
 
       {/* Second Row: 3 logos */}
-      <div className="grid md:grid-cols-2 grid-cols-3 md:gap-8 items-center p-4">
+      <div className="grid md:grid-cols-3 grid-cols-3 md:gap-8 items-center p-4">
         {companiesRow2.map((company) => (
           <div key={company.key} className="logo-item flex justify-center items-center">
            <Image
